@@ -23,6 +23,16 @@ public class Diagram {
         // TODO Erase current diagram and create new empty one
     }
     
+    public void saveDiagram(){
+        // TODO Save this diagram
+        System.out.println("Save file");
+    }
+     
+    public void saveAsDiagram(){
+        // TODO Save this diagram
+        System.out.println("Save file as");
+    }
+    
     public void createSampleDiagram(){
         entities = new ArrayList<>();
         Entity cours = new Entity();
@@ -74,24 +84,12 @@ public class Diagram {
     }
     
     public void show(){
-        
-        for (Entity e : entities){
-           e.debug();
-        }
-        for (Relationship r : relations){
-           r.debug();
+        for (Entity e: entities){
+            e.show();
         }
     }
     
-     public void saveDiagram(){
-        // TODO Save this diagram
-        System.out.println("Save file");
-    }
-     
-    public void saveAsDiagram(){
-        // TODO Save this diagram
-        System.out.println("Save file as");
-    }
+
     
     public List<Entity> getEntities() {
         return entities;

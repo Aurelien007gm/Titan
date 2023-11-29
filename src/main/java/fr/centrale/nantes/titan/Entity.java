@@ -51,10 +51,11 @@ public class Entity extends Component {
         attributes.add(attribute);
         return attribute;
     }
-    
-    public void debug(){
-        System.out.println(name);
         
+    public void show() {
+        System.out.println(name);
     }
+    
+
     
 }

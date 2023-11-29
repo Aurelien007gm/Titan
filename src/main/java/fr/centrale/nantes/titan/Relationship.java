@@ -43,8 +43,5 @@ public class Relationship extends Component {
         Link aLink = new Link(entity, this);
         return aLink;
     }
-    
-    public void debug(){
-        System.out.println(name);
-    }
+
 }
