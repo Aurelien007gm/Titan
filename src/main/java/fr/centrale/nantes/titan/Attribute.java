@@ -107,8 +107,8 @@ public class Attribute {
         return parent;
     }
     
-    public void show(){
-        
+   public void show() {
+        System.out.println(name);
     }
 
 }

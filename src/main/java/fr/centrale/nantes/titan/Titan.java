@@ -8,7 +8,11 @@ package fr.centrale.nantes.titan;
 
 import java.awt.Component;
 import java.util.Locale;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.KeyStroke;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -25,7 +29,6 @@ public class Titan extends javax.swing.JFrame {
      */
     public Titan() {
         initComponents();
-
         if (Titan.getOS().contains("mac")) {
             // Specific mac tools : remove quit from FILE menu
             jMenuFile.remove(jMenuItemQuit);
@@ -50,14 +53,22 @@ public class Titan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame3 = new javax.swing.JFrame();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         canvas1 = new java.awt.Canvas();
         canvas4 = new java.awt.Canvas();
-        panel1 = new java.awt.Panel();
-        Entity_Name = new javax.swing.JTextField();
+        hiddenPanel = new java.awt.Panel();
+        EditableName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Fields = new javax.swing.JList<>();
+        defaultList = new DefaultListModel();
+        Fields = new JList(defaultList);
+        Plus = new javax.swing.JButton();
         Show = new java.awt.Canvas();
+        panel = new java.awt.Panel();
+        NotEditableName = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Fields2 = new javax.swing.JList<>();
+        AddAttribute1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemNew = new javax.swing.JMenuItem();
@@ -72,50 +83,80 @@ public class Titan extends javax.swing.JFrame {
         jMenuItemQuit = new javax.swing.JMenuItem();
         jMenuEdit = new javax.swing.JMenu();
 
+        javax.swing.GroupLayout jFrame3Layout = new javax.swing.GroupLayout(jFrame3.getContentPane());
+        jFrame3.getContentPane().setLayout(jFrame3Layout);
+        jFrame3Layout.setHorizontalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame3Layout.setVerticalGroup(
+            jFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         canvas4.setBackground(new java.awt.Color(0, 0, 255));
 
-        Entity_Name.setText("jTextField1");
-        Entity_Name.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        hiddenPanel.setBackground(new java.awt.Color(0, 255, 0));
+
+        EditableName.setText("Name");
+        EditableName.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                Entity_NameInputMethodTextChanged(evt);
+                EditableNameInputMethodTextChanged(evt);
             }
         });
-        Entity_Name.addActionListener(new java.awt.event.ActionListener() {
+        EditableName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Entity_NameActionPerformed(evt);
+                EditableNameActionPerformed(evt);
             }
         });
 
-        Fields.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        Fields.setToolTipText("");
+        Fields.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                FieldsValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(Fields);
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Plus.setText("+");
+        Plus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PlusMouseClicked(evt);
+            }
+        });
+        Plus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlusActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout hiddenPanelLayout = new javax.swing.GroupLayout(hiddenPanel);
+        hiddenPanel.setLayout(hiddenPanelLayout);
+        hiddenPanelLayout.setHorizontalGroup(
+            hiddenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hiddenPanelLayout.createSequentialGroup()
+                .addComponent(EditableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 220, Short.MAX_VALUE))
+            .addGroup(hiddenPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(hiddenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Entity_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                    .addComponent(Plus))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(Entity_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+        hiddenPanelLayout.setVerticalGroup(
+            hiddenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hiddenPanelLayout.createSequentialGroup()
+                .addComponent(EditableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(Plus)
+                .addGap(27, 27, 27))
         );
 
         Show.setBackground(new java.awt.Color(0, 0, 255));
@@ -124,6 +165,72 @@ public class Titan extends javax.swing.JFrame {
                 ShowMouseClicked(evt);
             }
         });
+
+        panel.setBackground(new java.awt.Color(255, 0, 0));
+
+        NotEditableName.setEditable(false);
+        NotEditableName.setText("Name");
+        NotEditableName.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                NotEditableNameInputMethodTextChanged(evt);
+            }
+        });
+        NotEditableName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotEditableNameActionPerformed(evt);
+            }
+        });
+
+        Fields2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        Fields2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                Fields2ValueChanged(evt);
+            }
+        });
+        jScrollPane3.setViewportView(Fields2);
+
+        AddAttribute1.setText("Edit");
+        AddAttribute1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AddAttribute1MouseClicked(evt);
+            }
+        });
+        AddAttribute1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddAttribute1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(NotEditableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 220, Short.MAX_VALUE))
+            .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddAttribute1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addComponent(NotEditableName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(AddAttribute1)
+                .addGap(27, 27, 27))
+        );
 
         jMenuFile.setText("File");
         jMenuFile.addActionListener(new java.awt.event.ActionListener() {
@@ -183,39 +290,39 @@ public class Titan extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128)
+                .addGap(218, 218, 218)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133)
+                .addComponent(canvas4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hiddenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(canvas4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(890, 890, 890))))
+                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1011, 1011, 1011))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
                         .addComponent(canvas4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)
-                        .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(Show, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hiddenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,21 +348,63 @@ public class Titan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuFileActionPerformed
 
-    private void Entity_NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entity_NameActionPerformed
-        // TODO add your handling code here:
-        diagram.getEntities().get(0).setName(Entity_Name.getText());
-    }//GEN-LAST:event_Entity_NameActionPerformed
+    private void EditableNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditableNameActionPerformed
 
-    private void Entity_NameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_Entity_NameInputMethodTextChanged
+        diagram.getEntities().get(0).setName(EditableName.getText());
         System.out.println("Named changed");
+        NotEditableName.setText(EditableName.getText());
+        
+    }//GEN-LAST:event_EditableNameActionPerformed
+
+    private void EditableNameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_EditableNameInputMethodTextChanged
+        
         // TODO add your handling code here:
-    }//GEN-LAST:event_Entity_NameInputMethodTextChanged
+    }//GEN-LAST:event_EditableNameInputMethodTextChanged
 
     private void ShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShowMouseClicked
         // TODO add your handling code here:
         diagram.show();
     }//GEN-LAST:event_ShowMouseClicked
 
+    private void FieldsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_FieldsValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FieldsValueChanged
+
+    private void PlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PlusActionPerformed
+
+    private void PlusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PlusMouseClicked
+       System.out.println("Creating new line");
+       
+       
+       defaultList.addElement("test");
+       // In the futur, element should be editable
+    }//GEN-LAST:event_PlusMouseClicked
+
+    private void NotEditableNameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_NotEditableNameInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NotEditableNameInputMethodTextChanged
+
+    private void NotEditableNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotEditableNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NotEditableNameActionPerformed
+
+    private void Fields2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_Fields2ValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Fields2ValueChanged
+
+    private void AddAttribute1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AddAttribute1MouseClicked
+
+        
+        
+    hiddenPanel.setVisible(!hiddenPanel.isVisible());
+    }//GEN-LAST:event_AddAttribute1MouseClicked
+
+    private void AddAttribute1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddAttribute1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddAttribute1ActionPerformed
+     
     public static String getOS() {
         return OS;
     }
@@ -275,6 +424,7 @@ public class Titan extends javax.swing.JFrame {
         OS = System.getProperty("os.name", "unknown").toLowerCase(Locale.ROOT);
         diagram = new Diagram();
         diagram.createSampleDiagram();
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -282,15 +432,24 @@ public class Titan extends javax.swing.JFrame {
                 createAndShowGUI();
             }
         });
+        
+        
     }
-
+    // The default list used to build the JLIST of the attributes ( may change name in futur )
+    private DefaultListModel defaultList;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Entity_Name;
+    private javax.swing.JButton AddAttribute1;
+    private javax.swing.JTextField EditableName;
     private javax.swing.JList<String> Fields;
+    private javax.swing.JList<String> Fields2;
+    private javax.swing.JTextField NotEditableName;
+    private javax.swing.JButton Plus;
     private java.awt.Canvas Show;
     private java.awt.Canvas canvas1;
     private java.awt.Canvas canvas4;
     private javax.swing.Box.Filler filler1;
+    private java.awt.Panel hiddenPanel;
+    private javax.swing.JFrame jFrame3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuEdit;
     private javax.swing.JMenu jMenuFile;
@@ -302,9 +461,10 @@ public class Titan extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JMenuItem jMenuItemSaveAs;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparatorQuit;
-    private java.awt.Panel panel1;
+    private java.awt.Panel panel;
     // End of variables declaration//GEN-END:variables
 }

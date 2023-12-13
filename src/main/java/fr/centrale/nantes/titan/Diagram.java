@@ -39,6 +39,8 @@ public class Diagram {
         cours.setName("Cours");
         cours.addAttribute("Nom");
         cours.addAttribute("Salle");
+        cours.addAttribute("EstOption");
+        cours.addAttribute("Semestre");
         entities.add(cours);
         
         System.out.println("Sample created");

@@ -53,7 +53,12 @@ public class Entity extends Component {
     }
         
     public void show() {
+        System.out.println("Nom de l'entite");
         System.out.println(name);
+        System.out.println("Nom des attributs");
+        for (Attribute a : attributes){
+            a.show();
+        }
     }
     
 
